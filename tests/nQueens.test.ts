@@ -39,4 +39,14 @@ describe("isSafe()", () => {
 
     expect(isSafe(board, 1, 1, 4)).toBe(false);
   });
+
+  test("Devrait retourner true si la position est sûre (pas de conflit)", () => {
+    const board = [
+      ["#", "O", "O", "O"],
+      ["O", "O", "O", "O"],
+      ["O", "O", "O", "O"],
+      ["O", "O", "O", "O"],
+    ];
+    expect(isSafe(board, 1, 2, 4)).toBe(true);
+  });
 });
