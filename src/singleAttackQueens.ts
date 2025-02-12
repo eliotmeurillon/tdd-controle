@@ -1,14 +1,10 @@
 function attacks(r1: number, c1: number, r2: number, c2: number): boolean {
-  // Même ligne (de gauche à droite)
-  if (r1 === r2 && c1 < c2) return true;
-  // Même colonne (de haut en bas)
-  if (c1 === c2 && r1 < r2) return true;
-  // Diagonale descendante (de gauche à droite)
-  if (c1 < c2 && r1 < r2 && Math.abs(r1 - r2) === Math.abs(c1 - c2))
-    return true;
-  // Diagonale montante (de gauche à droite)
-  if (c1 < c2 && r1 > r2 && Math.abs(r1 - r2) === Math.abs(c1 - c2))
-    return true;
+  // Même ligne
+  if (r1 === r2 && c1 !== c2) return true;
+  // Même colonne
+  if (c1 === c2 && r1 !== r2) return true;
+  // Diagonales
+  if (Math.abs(r1 - r2) === Math.abs(c1 - c2) && r1 !== r2) return true;
 
   return false;
 }
