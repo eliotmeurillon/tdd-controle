@@ -12,22 +12,9 @@ export function isSafe(
   n: number
 ): boolean {
   for (let i = 0; i < row; i++) {
-    if (board[i][col] === "#") {
-      return false;
-    }
+    if (board[i][col] === "#") return false;
+    if (col - (row - i) >= 0 && board[i][col - (row - i)] === "#") return false;
+    if (col + (row - i) < n && board[i][col + (row - i)] === "#") return false;
   }
-
-  for (let i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
-    if (board[i][j] === "#") {
-      return false;
-    }
-  }
-
-  for (let i = row - 1, j = col + 1; i >= 0 && j < n; i--, j++) {
-    if (board[i][j] === "#") {
-      return false;
-    }
-  }
-
   return true;
 }
