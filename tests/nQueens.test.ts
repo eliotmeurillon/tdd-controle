@@ -6,6 +6,11 @@ describe("solveNQueens()", () => {
     expect(solutions).toHaveLength(1);
     expect(solutions[0]).toEqual(["#"]);
   });
+
+  test("Devrait retourner un tableau vide pour n=2 (pas de solution)", () => {
+    const solutions = solveNQueens(2);
+    expect(solutions).toHaveLength(0);
+  });
 });
 
 describe("isSafe()", () => {
