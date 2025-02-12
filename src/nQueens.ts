@@ -18,12 +18,15 @@ function solveBoard(
 }
 
 export function solveNQueens(n: number): string[][] {
+  if (n === 1) return [["#"]];
+
   const board = Array.from({ length: n }, () => Array(n).fill("O"));
   const solutions: string[][] = [];
 
   solveBoard(board, 0, n, solutions);
   return solutions;
 }
+
 export function isSafe(
   board: string[][],
   row: number,
