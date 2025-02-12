@@ -26,15 +26,14 @@ describe("checkSingleAttack()", () => {
 });
 
 describe("solveSingleAttackQueens()", () => {
-  test("Devrait retourner un tableau non vide pour un 4x4 (s’il existe des solutions)", () => {
+  test("Devrait retourner un tableau non vide pour un 4x4 (s'il existe des solutions)", () => {
     const solutions = solveSingleAttackQueens(4);
     expect(Array.isArray(solutions)).toBe(true);
 
     expect(solutions.length).toBeGreaterThan(0);
 
     solutions.forEach((sol) => {
-      const board = sol.map((row) => row.split(""));
-      expect(checkSingleAttack(board)).toBe(true);
+      expect(checkSingleAttack(sol)).toBe(true);
     });
   });
 });

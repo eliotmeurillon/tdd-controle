@@ -41,5 +41,27 @@ export function checkSingleAttack(board: string[][]): boolean {
 }
 
 export function solveSingleAttackQueens(n: number): string[][][] {
-  return [];
+  const solutions: string[][][] = [];
+  const totalSquares = n * n;
+
+  const max = 1 << totalSquares;
+  for (let mask = 0; mask < max; mask++) {
+    const board: string[][] = Array.from({ length: n }, () =>
+      Array(n).fill("O")
+    );
+
+    for (let bit = 0; bit < totalSquares; bit++) {
+      if (mask & (1 << bit)) {
+        const row = Math.floor(bit / n);
+        const col = bit % n;
+        board[row][col] = "#";
+      }
+    }
+
+    if (checkSingleAttack(board)) {
+      solutions.push([...board]);
+    }
+  }
+
+  return solutions;
 }
