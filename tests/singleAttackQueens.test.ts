@@ -10,4 +10,14 @@ describe("checkSingleAttack()", () => {
     ];
     expect(checkSingleAttack(board)).toBe(true);
   });
+
+  test("Devrait retourner false si au moins une reine n'est attaquée par personne", () => {
+    const board: string[][] = [
+      ["#", "O", "O", "O"],
+      ["O", "O", "#", "O"],
+      ["O", "O", "O", "O"],
+      ["O", "O", "O", "O"],
+    ];
+    expect(checkSingleAttack(board)).toBe(false);
+  });
 });
