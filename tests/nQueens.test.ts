@@ -16,6 +16,11 @@ describe("solveNQueens()", () => {
     const solutions = solveNQueens(3);
     expect(solutions).toHaveLength(0);
   });
+
+  test("Devrait trouver 2 solutions pour n=4", () => {
+    const solutions = solveNQueens(4);
+    expect(solutions).toHaveLength(2);
+  });
 });
 
 describe("isSafe()", () => {
