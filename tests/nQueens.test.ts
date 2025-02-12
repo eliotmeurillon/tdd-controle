@@ -20,6 +20,26 @@ describe("solveNQueens()", () => {
   test("Devrait trouver 2 solutions pour n=4", () => {
     const solutions = solveNQueens(4);
     expect(solutions).toHaveLength(2);
+
+    const solutionSet = new Set(solutions.map((sol) => sol.join(",")));
+    expect(solutionSet).toContain(["O#OO", "OOO#", "#OOO", "OO#O"].join(","));
+    expect(solutionSet).toContain(["OO#O", "#OOO", "OOO#", "O#OO"].join(","));
+  });
+
+  test("Devrait trouver 92 solutions pour n=8", () => {
+    const solutions = solveNQueens(8);
+    expect(solutions).toHaveLength(92);
+  });
+
+  test("Devrait trouver au moins 3 solutions pour n=8", () => {
+    const solutions = solveNQueens(8);
+    expect(solutions.length).toBeGreaterThanOrEqual(3);
+    solutions.forEach((solution) => {
+      expect(solution).toHaveLength(8);
+      solution.forEach((row) => {
+        expect(row.split("#").length).toBe(2);
+      });
+    });
   });
 });
 

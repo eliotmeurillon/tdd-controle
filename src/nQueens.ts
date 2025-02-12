@@ -1,19 +1,29 @@
-export function solveNQueens(n: number): string[][] {
-  if (n === 1) {
-    return [["#"]];
+function solveBoard(
+  board: string[][],
+  row: number,
+  n: number,
+  solutions: string[][]
+) {
+  if (row === n) {
+    solutions.push(board.map((r) => r.join("")));
+    return;
   }
-  if (n === 2 || n === 3) {
-    return [];
+  for (let col = 0; col < n; col++) {
+    if (isSafe(board, row, col, n)) {
+      board[row][col] = "#";
+      solveBoard(board, row + 1, n, solutions);
+      board[row][col] = "O";
+    }
   }
-  if (n === 4) {
-    return [
-      ["O#OO", "OOO#", "#OOO", "OO#O"],
-      ["OO#O", "#OOO", "OOO#", "O#OO"],
-    ];
-  }
-  return [];
 }
 
+export function solveNQueens(n: number): string[][] {
+  const board = Array.from({ length: n }, () => Array(n).fill("O"));
+  const solutions: string[][] = [];
+
+  solveBoard(board, 0, n, solutions);
+  return solutions;
+}
 export function isSafe(
   board: string[][],
   row: number,
