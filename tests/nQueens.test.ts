@@ -18,4 +18,14 @@ describe("isSafe()", () => {
     ];
     expect(isSafe(board, 0, 0, 4)).toBe(true);
   });
+
+  test("Devrait retourner false si une reine est sur la diagonale descendante", () => {
+    const board = [
+      ["O", "O", "#", "O"],
+      ["O", "O", "O", "O"],
+      ["O", "O", "O", "O"],
+      ["O", "O", "O", "O"],
+    ];
+    expect(isSafe(board, 1, 1, 4)).toBe(false);
+  });
 });
