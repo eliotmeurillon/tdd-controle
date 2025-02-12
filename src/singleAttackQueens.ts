@@ -1,12 +1,5 @@
 function attacks(r1: number, c1: number, r2: number, c2: number): boolean {
-  // Même ligne
-  if (r1 === r2 && c1 !== c2) return true;
-  // Même colonne
-  if (c1 === c2 && r1 !== r2) return true;
-  // Diagonales
-  if (Math.abs(r1 - r2) === Math.abs(c1 - c2) && r1 !== r2) return true;
-
-  return false;
+  return r1 === r2 || c1 === c2 || Math.abs(r1 - r2) === Math.abs(c1 - c2);
 }
 
 export function checkSingleAttack(board: string[][]): boolean {
@@ -47,11 +40,11 @@ export function checkSingleAttack(board: string[][]): boolean {
   return true;
 }
 
-export function solveSingleAttackQueens(n: number): string[][][] {
-  const solutions: string[][][] = [];
+export function solveSingleAttackQueens(n: number): string[][] {
+  const solutions: string[][] = [];
   const totalSquares = n * n;
-
   const max = 1 << totalSquares;
+
   for (let mask = 0; mask < max; mask++) {
     const board: string[][] = Array.from({ length: n }, () =>
       Array(n).fill("O")
@@ -66,7 +59,8 @@ export function solveSingleAttackQueens(n: number): string[][][] {
     }
 
     if (checkSingleAttack(board)) {
-      solutions.push([...board]);
+      const solution = board.map((r) => r.join(""));
+      solutions.push(solution);
     }
   }
 
